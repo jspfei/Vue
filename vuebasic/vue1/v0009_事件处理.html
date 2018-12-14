@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script src="./lib/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{counter}}</p>
+    <button v-on:click="counter +=1">+1</button>
+    <!--v-on 可以接收一个定义的方法来调用。-->
+    <br>
+    <button v-on:click="greet">Greet</button>
+    <!--也可以用内联 JavaScript 语句-->
+    <br>
+    <button v-on:click="say('hi')">Say Hi</button>
+    <button v-on:click="say('what')">Say what</button>
+    <!-- 阻止单击事件冒泡 -->
+    <a v-on:click.stop="doThis">sssssss</a>
+    <!-- 提交事件不再重载页面 -->
+    <form v-on:submit.prevent="onSubmit">ssssssss</form>
+    <!-- 修饰符可以串联  -->
+    <a v-on:click.stop.prevent="doThat">ssssssss</a>
+    <!-- 只有修饰符 -->
+    <form v-on:submit.prevent>fffffffff</form>
+    <!-- 添加事件侦听器时使用事件捕获模式 -->
+    <div v-on:click.capture="doThis">...</div>
+    <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+    <div v-on:click.self="doThat">...</div>
+
+    <!-- click 事件只能点击一次，2.1.4版本新增 -->
+    <a v-on:click.once="doThis">ssssss</a>
+    <!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
+    <input v-on:keyup.13="submit">
+    <!-- 同上 -->
+    <input v-on:keyup.enter="submit">
+    <!-- 缩写语法 -->
+    <input @keyup.enter="submit">
+</div>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            counter:0,
+            name:"Vue.js"
+        },
+        methods:{
+            greet:function(event){
+                alert('Hello'+this.name+"!");
+                if(event){
+                    alert(event.target.tagName)
+                }
+            },
+            say:function(msg){
+                alert(msg)
+            }
+        }
+    })
+</script>
+</body>
+</html>
