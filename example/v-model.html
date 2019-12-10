@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-model</title>
+  <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+  <h1>v-model 实例</h1>
+  <!-- 绑定数据源 -->
+  <hr>
+  <div id="app">
+    <P>原始数据： {{message}}</P>
+    <h3>文本框</h3>
+    <p>
+      <p>v-model: <input type="text" v-model.lazy="message" /></p>
+      <p>v-model.lazy: <input type="text" v-model.lazy="message" /></p>
+      <p>v-model.number: <input type="text" v-model.number="message" /></p>
+      <p>v-model.trim: <input type="text" v-model.trim="message" /></p>
+    </p>
+    <hr>
+    <h3>文本域</h3>
+    <textarea cols="20" rows="5" v-model="message"></textarea>
+    <hr>
+    <h3>多选框绑定一个值</h3>
+    <input v-model="isTrue" id="isTrue" type="checkbox" />
+    <label for="isTrue">{{isTrue}}</label>
+    <hr>
+    <h3>多选框绑定一个数组</h3>
+    <p>
+      <input v-model="web_names" id="jsp1" value="jsp1" type="checkbox" />
+      <label for="isTrue">jsp1</label>
+      <input v-model="web_names" id="jsp2" value="jsp2" type="checkbox" />
+      <label for="isTrue">jsp2</label>
+      <input v-model="web_names" id="jsp3" value="jsp3" type="checkbox" />
+      <label for="isTrue">jsp3</label>
+      <input v-model="web_names" id="jsp4" value="jsp4" type="checkbox" />
+      <label for="isTrue">jsp4</label>
+    </p>
+    <p>{{web_names}}</p>
+    <hr>
+    <h3>单选框绑定</h3>
+    <p>
+      <input type="radio" id="one" value="男" v-model='sex' />
+      <label for="one">男</label>
+      <input type="radio" id="two" value="女" v-model='sex' />
+      <label for="two">女</label>
+      <p>你选择的性别：{{sex}}</p>
+    </p>
+  </div>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world',
+        isTrue: true,
+        web_names: [],
+        sex: '男'
+      }
+    })
+  </script>
+</body>
+
+</html>
