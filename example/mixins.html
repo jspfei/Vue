@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> mixins Option 混入选项</title>
+  <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+  <h1> mixins Option 混入选项</h1>
+  <hr>
+  <div id="app">
+    {{num}}
+    <p> <button @click="add">Add</button></p>
+
+  </div>
+  <!-- 额外增加需求，不改变成熟的代码使用 mixins  -->
+  <!-- 混入的方法先执行，原生后执行 -->
+  <!-- Vue.mixin 全局混入 -->
+  <script type="text/javascript">
+    var addConsole = {
+      updated() {
+        console.log("数据变化成了", this.num)
+      }
+    }
+    Vue.mixin({
+      updated() {
+        console.log("我是全局的混入updated")
+      },
+    })
+    var app = new Vue({
+      el: '#app',
+      data: {
+        num: 10
+      },
+      methods: {
+        add() {
+          this.num++;
+        }
+      },
+      updated() {
+        console.log("我是原生 updated")
+      },
+      mixins: [addConsole]
+    })
+  </script>
+</body>
+
+</html>

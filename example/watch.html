@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hello World</title>
+  <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+  <h1>HelloWorld</h1>
+  <hr>
+  <div id="app">
+    <p>今天的温度：{{wendu}}*</p>
+    <p>穿衣的建议: {{chuanyi}}</p>
+    <button @click="shenggao">升高温度</button>
+    <button @click="jiangdi">降低温度</button>
+  </div>
+  <script type="text/javascript">
+    var chuanyiarray = ['T恤，短袖', '夹克，长袖', '羽绒服，棉衣'];
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        wendu: 14,
+        chuanyi: '长袖'
+      },
+      methods: {
+        shenggao() {
+          this.wendu += 5;
+        },
+        jiangdi() {
+          this.wendu -= 5;
+        }
+      }
+      // watch: {
+      //   wendu(newVal, oldVal) {
+      //     if (newVal > 26) {
+      //       this.chuanyi = chuanyiarray[0];
+      //     }
+      //     else if (newVal > 5 && newVal < 26) {
+      //       this.chuanyi = chuanyiarray[1];
+      //     } else {
+      //       this.chuanyi = chuanyiarray[2];
+      //     }
+      //   }
+      // }
+    });
+    //watch独立出来写法  es6 => 写法无效
+    app.$watch('wendu', function (newVal, oldVal) {
+      if (newVal > 26) {
+        this.chuanyi = chuanyiarray[0];
+      }
+      else if (newVal > 5 && newVal < 26) {
+        this.chuanyi = chuanyiarray[1];
+      } else {
+        this.chuanyi = chuanyiarray[2];
+      }
+    });
+  </script>
+</body>
+
+</html>
