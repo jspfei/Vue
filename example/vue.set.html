@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue.set</title>
+  <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+  <h1>Vue.set</h1>
+  <hr>
+  <div id="app">
+    {{count}}
+    <ol>
+      <li v-for="(item, index) in arr" :key="index">{{item}}</li>
+    </ol>
+  </div>
+  <p><button onclick="add()">ADD</button></p>
+  <script type="text/javascript">
+    function add() {
+      //Vue.set(outData, 'count', 2);
+      // app.count++;
+      // outData.count++;
+      //改变下标，vue无法监听到（js的问题）
+      //  app.arr[1] = 'ddd' (无法改变方法)
+      Vue.set(app.arr, 1, 'ddd')//通过vue.set改变
+    }
+    var outData = {
+      count: 1,
+      goods: "car",
+      arr: ['aa', 'bb', 'cc']
+    }
+    var app = new Vue({
+      el: '#app',
+      data: outData
+    })
+  </script>
+</body>
+
+</html>
